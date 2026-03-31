@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TalkNotes – Login</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              DEFAULT: '#7C6FF7',
+              light:   '#A99EF9',
+              muted:   '#EDE9FF',
+              hover:   '#6A62E8',
+            }
+          },
+          fontFamily: {
+            sans: ['"DM Sans"', 'ui-sans-serif', 'system-ui'],
+          },
+          boxShadow: {
+            'input-focus': '0 0 0 3px rgba(124,111,247,0.18)',
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    /* Subtle background texture */
+    body { background-color: #f7f7f9; }
+
+    /* Animated waveform bars */
+    .wave-bar { animation: wave 1.2s ease-in-out infinite; }
+    .wave-bar:nth-child(1) { animation-delay: 0s;    height: 10px; }
+    .wave-bar:nth-child(2) { animation-delay: 0.1s;  height: 18px; }
+    .wave-bar:nth-child(3) { animation-delay: 0.2s;  height: 24px; }
+    .wave-bar:nth-child(4) { animation-delay: 0.3s;  height: 18px; }
+    .wave-bar:nth-child(5) { animation-delay: 0.4s;  height: 10px; }
+    @keyframes wave {
+      0%, 100% { transform: scaleY(1); }
+      50%       { transform: scaleY(0.45); }
+    }
+
+    /* Card fade-in */
+    .card-enter {
+      animation: cardIn 0.45s cubic-bezier(.22,.68,0,1.2) both;
+    }
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(18px) scale(.98); }
+      to   { opacity: 1; transform: translateY(0)    scale(1); }
+    }
+
+    /* Input focus ring */
+    .input-field:focus { box-shadow: 0 0 0 3px rgba(124,111,247,0.20); }
+
+    /* Button press */
+    .btn-press:active { transform: scale(0.975); }
+  </style>
+</head>
+<body class="font-sans min-h-screen flex items-center justify-center px-4">
+
+  <!-- Card -->
+  <div class="card-enter w-full max-w-md rounded-2xl px-10 py-12">
+
+    <!-- Logo -->
+    <div class="flex items-center gap-2.5 mb-8">
+      <!-- Animated waveform icon -->
+      <div class="flex items-end gap-[3px] h-7">
+        <div class="wave-bar w-[3px] rounded-full bg-gradient-to-t from-purple-500 to-pink-400"></div>
+        <div class="wave-bar w-[3px] rounded-full bg-gradient-to-t from-purple-500 to-pink-400"></div>
+        <div class="wave-bar w-[3px] rounded-full bg-gradient-to-t from-purple-500 to-pink-400"></div>
+        <div class="wave-bar w-[3px] rounded-full bg-gradient-to-t from-purple-500 to-pink-400"></div>
+        <div class="wave-bar w-[3px] rounded-full bg-gradient-to-t from-purple-500 to-pink-400"></div>
+      </div>
+      <span class="text-[1.35rem] font-semibold tracking-tight text-gray-800">TalkNotes</span>
+    </div>
+
+    <!-- Heading -->
+    <h1 class="text-[1.65rem] font-bold text-gray-900 leading-tight mb-2">
+      Login to your account
+    </h1>
+    <p class="text-sm text-gray-400 leading-relaxed mb-8">
+      Enter your email to receive a one-time password (or use
+      permanent password if you defined one).
+    </p>
+
+    <!-- Email field -->
+    <div class="mb-5">
+      <label for="email" class="block text-sm font-medium text-gray-700 mb-1.5">
+        Email address:
+      </label>
+      <input
+        id="email"
+        type="email"
+        placeholder="your@email.com"
+        autocomplete="email"
+        class="input-field w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-800 placeholder-gray-300 outline-none transition-all duration-200 hover:border-brand focus:border-brand"
+      />
+    </div>
+
+    <!-- Primary CTA -->
+    <button
+      class="btn-press w-full flex items-center justify-center gap-2.5 bg-brand hover:bg-brand-hover text-white text-sm font-semibold rounded-xl px-4 py-3.5 transition-colors duration-150 mb-3 shadow-sm"
+    >
+      <!-- Envelope icon -->
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 opacity-90" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="4" width="20" height="16" rx="2"/>
+        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+      </svg>
+      Get one-time password
+    </button>
+
+    <!-- Secondary CTA -->
+    <button
+      class="btn-press w-full flex items-center justify-center gap-2.5 border border-brand text-brand hover:bg-brand-muted text-sm font-semibold rounded-xl px-4 py-3.5 transition-colors duration-150"
+    >
+      <!-- Fingerprint icon -->
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 opacity-90" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"/>
+        <path d="M14 13.12c0 2.38 0 6.38-1 8.88"/>
+        <path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"/>
+        <path d="M2 12a10 10 0 0 1 18-6"/>
+        <path d="M2 17.5c0 0 1.25-1.25 2.5-1.25s2.5 1.25 3.75 1.25 2.5-1.25 2.5-1.25"/>
+        <path d="M2.5 9.5C3.5 8.5 5 7.5 6 7.5s2 1 3 1 2-1 3-1 2 1 3 1 2-1 2.5-1.5"/>
+      </svg>
+      Login with password
+    </button>
+
+    <!-- Help link -->
+    <p class="text-center text-sm text-gray-400 mt-5">
+      Problems logging in?
+      <a href="#" class="text-brand font-medium hover:underline transition-all">Click here</a>
+    </p>
+
+    <!-- Divider -->
+    <div class="flex items-center gap-4 my-7">
+      <div class="flex-1 h-px bg-gray-100"></div>
+      <span class="text-xs text-gray-400 font-medium tracking-wide">Or continue with</span>
+      <div class="flex-1 h-px bg-gray-100"></div>
+    </div>
+
+    <!-- Social buttons -->
+    <div class="grid grid-cols-2 gap-3">
+      <!-- Google -->
+      <button class="btn-press flex items-center justify-center border border-gray-100 hover:border-gray-300 bg-gray-100 shadow-sm hover:bg-gray-50 rounded-xl px-4 py-3 text-sm font-semibold text-gray-700 transition-all duration-150">
+        <!-- Google G -->
+        <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+          <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+          <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+          <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+        </svg>
+        Continue with Google
+      </button>
+
+      <!-- Apple -->
+      <button class="btn-press flex items-center justify-center gap-2.5 border border-gray-100 hover:border-gray-300 bg-gray-100 shadow-sm hover:bg-gray-50 rounded-xl px-4 py-3 text-sm font-semibold text-gray-700 transition-all duration-150">
+        <!-- Apple logo -->
+        <svg class="w-4 h-4 shrink-0 text-gray-800" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+        </svg>
+        Continue with Apple
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Help chat bubble (bottom-right) -->
+  <button
+    class="fixed bottom-6 right-6 w-12 h-12 bg-brand hover:bg-brand-hover text-white rounded-2xl flex items-center justify-center shadow-lg transition-colors duration-150"
+    aria-label="Help"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"/>
+      <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+      <path d="M12 17h.01"/>
+    </svg>
+  </button>
+
+</body>
+</html>
+
+
